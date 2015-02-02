@@ -1,0 +1,62 @@
+<project
+		xmlns="http://maven.apache.org/POM/4.0.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.jboss.soa.integration.many-bpels</groupId>
+		<artifactId>ear-with-many-bpel-jars-test</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>many-bpels-ear-test</artifactId>
+	<packaging>ear</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.jboss.soa.integration.many-bpels</groupId>
+			<artifactId>bpel-xxservicenumberxx</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
+					<filtering>true</filtering>
+					<modules>
+						<jarModule>
+							<groupId>org.jboss.soa.integration.many-bpels</groupId>
+							<artifactId>bpel-xxservicenumberxx</artifactId>
+							<includeInApplicationXml>true</includeInApplicationXml>
+						</jarModule>
+						<!--jarModule>
+						    <groupId>mil.army.eis.wgs</groupId>
+						    <artifactId>ws-core</artifactId>
+						    <bundleDir>lib</bundleDir>
+						</jarModule-->
+					</modules>
+
+					<!--packagingIncludes> **/*Orchestration*, lib/*, META-INF/*
+					</packagingIncludes-->
+
+					<!--archive>
+						<manifestEntries>
+							<Dependencies>org.jboss.resteasy.resteasy-jaxrs</Dependencies>
+						</manifestEntries>
+					</archive-->
+
+					<!--fileNameMapping>no-version</fileNameMapping-->
+				</configuration>
+			</plugin>
+			<!--plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+			</plugin-->
+		</plugins>
+	</build>
+</project>
